@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="container bs-docs-container">
+    <!--
+<form action="." method="get">
+    {% csrf_token %} <input type="submit" value="List" />
+</form>
+ -->
+    <a href="/movie"> <input type="button" value="Refresh"/></a>
+    <a href="/movie/run"> <input type="button" value="Run Scrapy"/></a>
+
+    <a href="/movie/deleteall"> <input type="button" value="Delete All"/></a>
+
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Item Table (count : {{item_count}})</div>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Link</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% if item_list %} {% for item in item_list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.date }}</td>
+                <td><a href="{{ item.link }}">Link</a></td>
+                <td><a href="/movieapp/delete/{{item.id}}/">Del</a></td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+                <td>EMPTY</td>
+                <td>EMPTY</td>
+                <td>EMPTY</td>
+                <td>EMPTY</td>
+                <td></td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
